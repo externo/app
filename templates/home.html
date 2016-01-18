@@ -1,61 +1,59 @@
-<div ng-controller="HomeController as home">
-    <md-content id="home-page">
-        <header md-page-header>
-            <div md-header-picture></div>
-            <md-toolbar scroll class="md-primary" layout="row">
-                <div class="md-toolbar-tools">
-                    <md-input-container id="search">
-                        <label>Търси...</label>
-                        <input ng-model="filterSearch">
-                    </md-input-container>
+<md-content id="panel" class="panel" ng-controller="HomeController as home">
+    <header md-page-header>
+        <div md-header-picture></div>
+        <md-toolbar scroll class="md-primary" layout="row">
+            <div class="md-toolbar-tools">
+                <md-input-container id="search">
+                    <label>Търси...</label>
+                    <input ng-model="filterSearch">
+                </md-input-container>
 
-                    <md-input-container>
-                        <label>Модел</label>
-                        <md-select ng-model="filterByCategory" aria-label="Модел">
-                            <md-option value="C-W202">C-W202</md-option>
-                            <md-option value="C-W203">C-W203</md-option>
-                            <md-option value="E-W210">E-W210</md-option>
-                            <md-option value="E-W211">E-W211</md-option>
-                            <md-option value="ML-W163">ML-W163</md-option>
-                            <md-option value="Аксесоари">Аксесоари</md-option>
-                            <md-option value="Гуми">Гуми</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Подреди</label>
-                        <md-select ng-model="sortBy" aria-label="Подреди">
-                            <md-option value="createdAt">Последни добавени</md-option>
-                            <md-option value="updatedAt">Последно редактирани</md-option>
-                            <md-option value="price">Цена</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </md-toolbar>
-            <md-button id="login-button" class="md-fab md-accent" href="#login" aria-label="login">
-                <md-icon md-svg-src="img/icons/account-key.svg"></md-icon>
-            </md-button>
-        </header>
+                <md-input-container>
+                    <label>Модел</label>
+                    <md-select ng-model="filterByCategory" aria-label="Модел">
+                        <md-option value="C-W202">C-W202</md-option>
+                        <md-option value="C-W203">C-W203</md-option>
+                        <md-option value="E-W210">E-W210</md-option>
+                        <md-option value="E-W211">E-W211</md-option>
+                        <md-option value="ML-W163">ML-W163</md-option>
+                        <md-option value="Аксесоари">Аксесоари</md-option>
+                        <md-option value="Гуми">Гуми</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Подреди</label>
+                    <md-select ng-model="sortBy" aria-label="Подреди">
+                        <md-option value="createdAt">Последни добавени</md-option>
+                        <md-option value="updatedAt">Последно редактирани</md-option>
+                        <md-option value="price">Цена</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-button id="login-button" class="md-fab md-accent" href="#login" aria-label="login">
+                    <md-icon md-svg-src="img/icons/account-key.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </header>
 
-        <!--RESUME AD description-->
-        <md-whiteframe class="md-whiteframe-1dp"
-                       flex="15"
-                       ng-repeat="ad in home.ads
+    <!--RESUME AD description-->
+    <md-whiteframe class="md-whiteframe-1dp"
+                   flex="15"
+                   ng-repeat="ad in home.ads
                           | filter: filterSearch
                           | filter: filterByCategory
                           | orderBy: sortBy"
-                       ng-click="home.showAdDialog($event, ad)">
-            <md-content>
-                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
-                <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
-            </md-content>
-            <md-content layout="row">
-                <a flex>{{ad.description.name}}</a>
-                <span flex="10"></span>
-                <a flex="20">{{ad.description.price}}</a>
-            </md-content>
-        </md-whiteframe>
-    </md-content>
-</div>
+                   ng-click="home.showAdDialog($event, ad)">
+        <md-content>
+            <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
+            <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
+        </md-content>
+        <md-content layout="row">
+            <a flex>{{ad.description.name}}</a>
+            <span flex="10"></span>
+            <a flex="20">{{ad.description.price}}</a>
+        </md-content>
+    </md-whiteframe>
+</md-content>
 <div ng-if="home.ads.length==0" class="box no-data">
     Няма намерени обяви.
 </div>

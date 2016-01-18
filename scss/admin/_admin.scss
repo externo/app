@@ -9,3 +9,14 @@
 .float-bottom{
   bottom: 1%;
 }
+
+#user-name{
+  margin-top: 2%;
+  margin-right: 2%;
+  cursor: pointer;
+
+  a, p{
+    text-decoration: none;
+    color: $accent-color;
+  }
+}

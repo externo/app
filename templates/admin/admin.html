@@ -1,10 +1,7 @@
 <md-content id="panel" class="panel" ng-controller="AdminController as admin">
-    <!--<div>-->
-        <!--<span>{{authService.getCurrentUser().username}}</span>-->
-        <!--<span ng-click="logout()" class="link">Logout</span>-->
-    <!--</div>-->
     <header md-page-header>
-        <div md-header-picture id="home-logo"></div>
+        <div md-header-picture id="home-logo">
+        </div>
         <md-toolbar scroll class="md-primary" layout="row">
             <div class="md-toolbar-tools">
                 <md-input-container id="search">
@@ -31,6 +28,10 @@
                         <md-option value="price">Цена</md-option>
                     </md-select>
                 </md-input-container>
+                <span flex></span>
+                <div id="user-name" layout="column">
+                    <a ng-click="logout()" class="link">Logout: {{authService.getCurrentUser().username}}</a>
+                </div>
             </div>
         </md-toolbar>
         <md-button class="show-publish md-fab md-accent" aria-label="new ad"
