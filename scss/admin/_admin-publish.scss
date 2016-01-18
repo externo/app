@@ -1,0 +1,56 @@
+// set slider size
+#edit-ads{
+  //  min-height: 180px;
+  z-index: 8;
+  padding: 0;
+  font-weight: 200;
+  line-height: 1.5em;
+  position: relative;
+}
+
+// add new AD panel
+.code{
+  background-color: $light-primary-color;
+  opacity: 0.97;
+  padding: min(1%) auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+//  height: 250px;
+  z-index: 16;
+  transition: all .3s;
+  transform: translateY(-100%);
+
+  md-input-container{
+    margin: 5% 1% 1% 1%;
+    height: 5%;
+
+    label, span{
+      color: $primary-text-color;
+    }
+
+    input, md-select, textarea {
+      border-bottom: 1px solid $secondary-text-color;
+      color: $primary-text-color;
+    }
+  }
+
+  #upload-image{
+
+    input{
+      display: none;
+    }
+  }
+
+  #ad-button {
+
+    &:hover{
+      -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+      background-color: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+      background-position: center top;
+    }
+  }
+}

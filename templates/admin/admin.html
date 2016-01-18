@@ -1,0 +1,57 @@
+<md-content id="panel" class="panel" ng-controller="AdminController as admin">
+    <!--<div>-->
+        <!--<span>{{authService.getCurrentUser().username}}</span>-->
+        <!--<span ng-click="logout()" class="link">Logout</span>-->
+    <!--</div>-->
+    <header md-page-header>
+        <div md-header-picture id="home-logo"></div>
+        <md-toolbar scroll class="md-primary" layout="row">
+            <div class="md-toolbar-tools">
+                <md-input-container id="search">
+                    <label>Търси...</label>
+                    <input ng-model="filterSearch">
+                </md-input-container>
+                <md-input-container>
+                    <label>Модел</label>
+                    <md-select ng-model="filterByCategory" aria-label="Модел">
+                        <md-option value="C-W202">C-W202</md-option>
+                        <md-option value="C-W203">C-W203</md-option>
+                        <md-option value="E-W210">E-W210</md-option>
+                        <md-option value="E-W211">E-W211</md-option>
+                        <md-option value="ML-W163">ML-W163</md-option>
+                        <md-option value="Аксесоари">Аксесоари</md-option>
+                        <md-option value="Гуми">Гуми</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Подреди</label>
+                    <md-select ng-model="sortBy" aria-label="Подреди">
+                        <md-option value="-createdAt">Последни добавени</md-option>
+                        <md-option value="-updatedAt">Последно редактирани</md-option>
+                        <md-option value="price">Цена</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-toolbar>
+        <md-button class="show-publish md-fab md-accent" aria-label="new ad"
+                   ng-click="admin.toggleCode()">
+            <md-icon class="icon-yepcode" md-svg-src="img/icons/plus.svg"></md-icon>
+            <md-icon class="icon-nocode" md-svg-src="img/icons/plus.svg"></md-icon>
+        </md-button>
+    </header>
+
+    <!--with orderBy: '-updatedAt'-> edited ads flows up, if you do not want to -> use 'createdAt'-->
+    <md-list id="edit-ads">
+
+        <!-- Publish new AD template -->
+        <div class="code" ng-include="'templates/admin/admin-publish.html'" ng-controller="PublishNewAdController"></div>
+
+        <!-- List ADS template -->
+        <div ng-include="'templates/admin/admin-ads.html'"></div>
+
+    </md-list>
+
+    <div ng-if="ads.length==0" class="box no-data">
+        Няма намерени обяви.
+    </div>
+</md-content>

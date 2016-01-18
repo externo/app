@@ -1,0 +1,66 @@
+<div layout="{{ admin.device.direction }}" ng-controller="PublishNewAdController as publish">
+    <div layout="column" flex>
+        <div layout="row" ng-hide="admin.device.size">
+            <md-input-container flex="70">
+                <label>Част:</label>
+                <input type="text" ng-model="publish.adData.description.name"/>
+            </md-input-container>
+            <md-input-container flex="15">
+                <label>Категория:</label>
+                <md-select ng-model="adData.description.category">
+                    <!--<option value="null">(None)</option>-->
+                    <md-option ng-repeat="category in categories"
+                               value="{{category.name}}">{{category.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex="15">
+                <label>Цена:</label>
+                <input type="text" ng-model="publish.adData.description.price"/>
+            </md-input-container>
+        </div>
+        <div layout="row" ng-show="admin.device.size">
+            <md-input-container flex="50">
+                <label>Категория:</label>
+                <md-select ng-model="adData.description.category">
+                    <!--<option value="null">(None)</option>-->
+                    <md-option ng-repeat="category in categories"
+                               value="{{category.name}}">{{category.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Цена:</label>
+                <input type="text" ng-model="publish.adData.description.price"/>
+            </md-input-container>
+        </div>
+        <div layout="row" ng-show="admin.device.size">
+            <md-input-container flex>
+                <label>Част:</label>
+                <input type="text" ng-model="publish.adData.description.name"/>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container  flex>
+                <label>Описание:</label>
+                <textarea type="text" ng-model="publish.adData.description.text"></textarea>
+            </md-input-container>
+        </div>
+    </div>
+    <div layout="{{ admin.device.direction }}" flex="30">
+        <div id='upload-image' layout="column" flex>
+            <span></span>
+            <label class='md-button' md-ink-ripple for='image'>
+                <img src='../../img/default-merc.jpg' />
+            </label>
+            <input id='image' type='file' onchange='angular.element(this).scope().fileSelected1(this)'>
+        </div>
+        <div layout="column" layout-align="center" flex="20">
+            <md-button id="ad-button"
+                       class="md-fab md-accent"
+                       ng-click="publish.publishAd(publish.adData)">
+                <md-icon md-svg-icon="img/icons/check.svg"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

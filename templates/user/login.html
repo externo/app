@@ -1,0 +1,13 @@
+<md-card id="login">
+    <md-input-container class="md-icon-float md-block">
+        <label>Потребител</label>
+        <md-icon md-svg-src="img/icons/account.svg" class="name"></md-icon>
+        <input ng-model="userData.username" type="text">
+    </md-input-container>
+    <md-input-container class="md-icon-float md-block">
+        <label>Парола</label>
+        <md-icon md-svg-src="img/icons/key.svg" class="name"></md-icon>
+        <input ng-model="userData.password" type="password">
+    </md-input-container>
+    <md-button ng-click="login(userData)" class="md-raised md-hue-3">Влез</md-button>
+</md-card>

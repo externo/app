@@ -1,0 +1,18 @@
+@mixin responsive-ad($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin blur-filter($index) {
+  -webkit-filter: blur($index);
+  -moz-filter: blur($index);
+  -o-filter: blur($index);
+  -ms-filter: blur($index);
+  filter: blur($index);
+}
+
+@mixin hover-ad{
+  margin: 3px auto;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+}

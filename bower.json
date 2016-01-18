@@ -1,0 +1,22 @@
+{
+  "name": "radi.ml",
+  "authors": [
+    "Iliya Iliev <iliya.vasilev.iliev@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "susy": "~2.2.9"
+  }
+}

@@ -1,0 +1,105 @@
+<div ng-controller="HomeController as home">
+    <md-content id="home-page">
+        <header md-page-header>
+            <div md-header-picture></div>
+            <md-toolbar scroll class="md-primary" layout="row">
+                <div class="md-toolbar-tools">
+                    <md-input-container id="search">
+                        <label>Търси...</label>
+                        <input ng-model="filterSearch">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Модел</label>
+                        <md-select ng-model="filterByCategory" aria-label="Модел">
+                            <md-option value="C-W202">C-W202</md-option>
+                            <md-option value="C-W203">C-W203</md-option>
+                            <md-option value="E-W210">E-W210</md-option>
+                            <md-option value="E-W211">E-W211</md-option>
+                            <md-option value="ML-W163">ML-W163</md-option>
+                            <md-option value="Аксесоари">Аксесоари</md-option>
+                            <md-option value="Гуми">Гуми</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Подреди</label>
+                        <md-select ng-model="sortBy" aria-label="Подреди">
+                            <md-option value="createdAt">Последни добавени</md-option>
+                            <md-option value="updatedAt">Последно редактирани</md-option>
+                            <md-option value="price">Цена</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </md-toolbar>
+            <md-button class="showcode md-fab md-accent" id="showcode" href="#login">
+                <md-icon class="ion-eye icon-yepcode" md-svg-src="img/icons/account-key.svg"></md-icon>
+                <md-icon class="ion-eye-disabled icon-nocode" md-svg-src="img/icons/close.svg"></md-icon>
+            </md-button>
+        </header>
+        <!--add ADS-->
+        <!---->
+
+        <!--with orderBy: '-updatedAt'-> edited ads flows up, if you do not want to -> use 'createdAt'-->
+        <md-list id="edit-ads">
+            <!-- floating div --->
+            <md-button class="md-warn">warn</md-button>
+            <md-button class="md-accent">acc</md-button>
+            <md-button class="md-primary">pr</md-button>
+            <md-button class="md-primary md-hue-1">HUE1</md-button>
+            <md-button class="md-primary md-hue-2">HUE2</md-button>
+            <md-button class="md-primary md-hue-3">HUE3</md-button>
+            <div class="code" ng-include="'templates/publish-new-ad.html'" ng-controller="PublishNewAdController"></div>
+            <md-list-item class="md-3-line"
+                          ng-repeat="ad in admin.ads
+                          | filter: filterSearch
+                          | filter: filterByCategory
+                          | orderBy: sortBy"
+                          ng-hide="admin.deletedAd"
+                          ng-click="admin.getAd($event, ad)">
+                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}" class="face"/>
+                <img ng-if="!ad.img1.url" data-ng-src="img/default-merc.jpg" />
+            <span flex>
+                <md-button class="md-raised">{{ad.description.category}}</md-button>
+                {{ad.description.name}}
+                <span flex></span>
+                <p>
+                    {{ad.description.text}}
+                </p>
+            </span>
+            <span>
+                <p>{{ad.description.price}}</p>
+                <small>{{ad.updatedAt | date:'dd.MM.yyyy'}}</small>
+            </span>
+                <!--hide element, not reload(very big data reload), but data is deleted! reload is correct next time-->
+                <md-button class="md-icon-button" ng-click="admin.deleteAd(ad.objectId); admin.deletedAd = true">
+                    <md-icon md-svg-src="img/icons/close.svg" aria-label="Затвори"></md-icon>
+                </md-button>
+                <md-divider md-inset ng-if="!$last"></md-divider>
+            </md-list-item>
+        </md-list>
+
+        <div layout="row" flex flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout-align="center center"
+             id="ads"
+                ng-repeat="ad in home.ads
+                | orderBy: '-createdAt'
+                | filter: filterSearch
+                | filter: filterByCategory">
+
+            <!--RESUME AD description-->
+            <md-whiteframe class="md-whiteframe-1dp"
+                           ng-click="home.showAdDialog($event, ad)">
+                <md-content class="ad-images">
+                    <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
+                    <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
+                </md-content>
+                <a>{{ad.description.name}}</a>
+                <span flex></span>
+                <a>{{ad.description.price}}</a>
+            </md-whiteframe>
+
+        </div>
+    </md-content>
+</div>
+<div ng-if="home.ads.length==0" class="box no-data">
+    Няма намерени обяви.
+</div>

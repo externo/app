@@ -1,0 +1,11 @@
+@import "_admin-ads";
+@import "_admin-ads-buttons";
+@import "_admin-publish";
+
+.blur{
+  @include blur-filter(2px);
+}
+
+.float-bottom{
+  bottom: 1%;
+}

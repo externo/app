@@ -1,0 +1,25 @@
+*{
+  font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+// position FAB
+header{
+  background-color: $dark-primary-color;
+  padding: 0.3em 1em;
+  position: relative;
+  z-index: 24;
+}
+
+.md-whiteframe-1dp {
+  float: left;
+  display: inline-block;
+}
+
+md-dialog{
+  max-width: 500px;
+}
+
+.ad-image{
+  max-width: 90%;
+  max-height: 50%;
+}

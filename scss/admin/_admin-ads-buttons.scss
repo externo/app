@@ -1,0 +1,79 @@
+//config
+$menu-items:2;
+$hamburger-spacing: 8px;
+
+%goo{
+  filter:url('#shadowed-goo');
+  // debug
+  //background:rgba(255,0,0,0.2);
+}
+%ball{
+  background: $light-primary-color;
+  border-radius:100%;
+  width:60px;
+  height:60px;
+  position:absolute;
+  right: 70px;
+  bottom: 15px;
+  color: $secondary-text-color;
+  text-align:center;
+  line-height:60px;
+  transform:translate3d(0,0,0);
+  transition:transform ease-out 200ms;
+}
+
+.menu{
+  @extend %goo;
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  box-sizing:border-box;
+  font-size:20px;
+}
+.menu-item{
+  @extend %ball;
+
+  &:hover{
+    background: $secondary-text-color;
+    color: $light-primary-color;
+  }
+  @for $i from 1 through $menu-items{
+    &:nth-child(#{$i+2}){
+      transition-duration:180ms;
+    }
+  }
+}
+.menu-open{
+  display:none;
+
+  &:checked+.menu-open-button{
+    transition-timing-function:linear;
+    transition-duration:200ms;
+    transform:scale(0.8,0.8) translate3d(150%,0,0);
+  }
+
+  &:checked~.menu-item{
+    transition-timing-function:cubic-bezier(0.165, 0.840, 0.440, 1.000);
+
+    @for $i from 1 through $menu-items{
+      &:nth-child(#{$i+2}){
+        transition-duration:90ms+(100ms*$i);
+        transform:translate3d(80px-80px*$i,0,0);
+      }
+    }
+  }
+}
+.menu-open-button{
+  @extend %ball;
+  z-index:2;
+  transition-timing-function:cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  transition-duration:400ms;
+  transform:scale(1.1,1.1) translate3d(0,0,0);
+  cursor:pointer;
+
+  &:hover{
+    transform:scale(1.2,1.2) translate3d(0,0,0);
+    background: $secondary-text-color;
+    color: $light-primary-color;
+  }
+}

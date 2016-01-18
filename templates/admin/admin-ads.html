@@ -1,0 +1,92 @@
+<!-- List AD items -->
+<md-list-item md-ripple-ink
+              class="notClicked"
+              ng-repeat="ad in admin.ads
+                          | filter: filterSearch
+                          | filter: filterByCategory
+                          | orderBy: sortBy"
+              id="{{ad.objectId}}"
+              ng-hide="admin.deletedAd"
+              ng-click="admin.getAd(ad)">
+    <div layout="{{ admin.device.direction }}">
+
+        <!-- Image div -->
+        <div flex="15" ng-hide="admin.device.size" id='image1preview'
+             class="image">
+            <span></span>
+            <label class='md-button' md-ink-ripple for='image1'>
+                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
+                <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
+            </label>
+            <input id='image1' type='file' onchange='angular.element(this).scope().fileSelected1(this)' />
+        </div>
+        <div flex="25" ng-show="admin.device.size" id='image1preview'
+             class="image">
+            <span></span>
+            <label class='md-button' md-ink-ripple for='image1'>
+                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
+                <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
+            </label>
+            <input id='image1' type='file' onchange='angular.element(this).scope().fileSelected1(this)' />
+        </div>
+
+        <!-- Description div -->
+        <div flex
+             class="description">
+            <div flex="100" layout="row">
+                <md-input-container flex="15" ng-hide="admin.device.size">
+                    <md-select ng-model="ad.description.category" aria-label="категория">
+                        <!--<option value="null">(None)</option>-->
+                        <md-option ng-repeat="category in categories"
+                                   value="{{category.name}}"
+                                   ng-selected="category.name==ad.description.category">
+                            {{category.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="50" ng-show="admin.device.size">
+                    <md-select ng-model="ad.description.category" aria-label="категория">
+                        <!--<option value="null">(None)</option>-->
+                        <md-option ng-repeat="category in categories"
+                                   value="{{category.name}}"
+                                   ng-selected="category.name==ad.description.category">
+                            {{category.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container flex="75" ng-hide="admin.device.size">
+                    <input type="text" ng-model="ad.description.name" aria-label="част" />
+                </md-input-container>
+                <md-input-container flex="10" ng-hide="admin.device.size">
+                    <input type="text" class="price" ng-model="ad.description.price" aria-label="цена" />
+                </md-input-container>
+
+                <md-input-container flex="50" ng-show="admin.device.size">
+                    <input type="text" class="price" ng-model="ad.description.price" aria-label="цена" />
+                </md-input-container>
+            </div>
+            <div flex="100" ng-show="admin.device.size">
+                <md-input-container>
+                    <input type="text" ng-model="ad.description.name" aria-label="част" />
+                </md-input-container>
+            </div>
+            <div flex="100">
+                <md-input-container>
+                    <textarea type="text" ng-model="ad.description.text" aria-label="описание"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+
+        <!-- Buttons div -->
+        <div flex="20"
+             class="buttons">
+            <p>
+                <small>обновено на {{ad.updatedAt | date:'dd.MM.yyyy'}}</small>
+            </p>
+            <div ng-include="'templates/admin/admin-ads-buttons.html'"></div>
+        </div>
+    </div>
+
+    <!--<md-divider md-inset ng-if="!$last"></md-divider>-->
+</md-list-item>
