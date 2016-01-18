@@ -1,0 +1,59 @@
+// position FAB
+header{
+  background-color: $dark-primary-color;
+  padding: 0.3em 1em;
+  position: relative;
+  z-index: 24;
+
+  #login-button{
+    position: absolute;
+    bottom: -20%;
+    right: 5%;
+  }
+}
+
+.md-whiteframe-1dp {
+  float: left;
+  display: inline-block;
+  margin: 0.8%;
+  height: 180px;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+
+  md-content {
+  }
+  a{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  img {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+md-dialog{
+  width: 40%;
+
+  md-dialog-content {
+    overflow: hidden;
+
+    md-tabs{
+
+      md-content{
+        width: 100%;
+        height: 10em;
+        overflow: hidden;
+
+        img{
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}

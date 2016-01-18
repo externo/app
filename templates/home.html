@@ -31,73 +31,29 @@
                     </md-input-container>
                 </div>
             </md-toolbar>
-            <md-button class="showcode md-fab md-accent" id="showcode" href="#login">
-                <md-icon class="ion-eye icon-yepcode" md-svg-src="img/icons/account-key.svg"></md-icon>
-                <md-icon class="ion-eye-disabled icon-nocode" md-svg-src="img/icons/close.svg"></md-icon>
+            <md-button id="login-button" class="md-fab md-accent" href="#login" aria-label="login">
+                <md-icon md-svg-src="img/icons/account-key.svg"></md-icon>
             </md-button>
         </header>
-        <!--add ADS-->
-        <!---->
 
-        <!--with orderBy: '-updatedAt'-> edited ads flows up, if you do not want to -> use 'createdAt'-->
-        <md-list id="edit-ads">
-            <!-- floating div --->
-            <md-button class="md-warn">warn</md-button>
-            <md-button class="md-accent">acc</md-button>
-            <md-button class="md-primary">pr</md-button>
-            <md-button class="md-primary md-hue-1">HUE1</md-button>
-            <md-button class="md-primary md-hue-2">HUE2</md-button>
-            <md-button class="md-primary md-hue-3">HUE3</md-button>
-            <div class="code" ng-include="'templates/publish-new-ad.html'" ng-controller="PublishNewAdController"></div>
-            <md-list-item class="md-3-line"
-                          ng-repeat="ad in admin.ads
+        <!--RESUME AD description-->
+        <md-whiteframe class="md-whiteframe-1dp"
+                       flex="15"
+                       ng-repeat="ad in home.ads
                           | filter: filterSearch
                           | filter: filterByCategory
                           | orderBy: sortBy"
-                          ng-hide="admin.deletedAd"
-                          ng-click="admin.getAd($event, ad)">
-                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}" class="face"/>
-                <img ng-if="!ad.img1.url" data-ng-src="img/default-merc.jpg" />
-            <span flex>
-                <md-button class="md-raised">{{ad.description.category}}</md-button>
-                {{ad.description.name}}
-                <span flex></span>
-                <p>
-                    {{ad.description.text}}
-                </p>
-            </span>
-            <span>
-                <p>{{ad.description.price}}</p>
-                <small>{{ad.updatedAt | date:'dd.MM.yyyy'}}</small>
-            </span>
-                <!--hide element, not reload(very big data reload), but data is deleted! reload is correct next time-->
-                <md-button class="md-icon-button" ng-click="admin.deleteAd(ad.objectId); admin.deletedAd = true">
-                    <md-icon md-svg-src="img/icons/close.svg" aria-label="Затвори"></md-icon>
-                </md-button>
-                <md-divider md-inset ng-if="!$last"></md-divider>
-            </md-list-item>
-        </md-list>
-
-        <div layout="row" flex flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout-align="center center"
-             id="ads"
-                ng-repeat="ad in home.ads
-                | orderBy: '-createdAt'
-                | filter: filterSearch
-                | filter: filterByCategory">
-
-            <!--RESUME AD description-->
-            <md-whiteframe class="md-whiteframe-1dp"
-                           ng-click="home.showAdDialog($event, ad)">
-                <md-content class="ad-images">
-                    <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
-                    <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
-                </md-content>
-                <a>{{ad.description.name}}</a>
-                <span flex></span>
-                <a>{{ad.description.price}}</a>
-            </md-whiteframe>
-
-        </div>
+                       ng-click="home.showAdDialog($event, ad)">
+            <md-content>
+                <img ng-if="ad.img1.url" ng-src="{{ad.img1.url}}"/>
+                <img ng-if="!ad.img1.url" ng-src="img/default-merc.jpg" />
+            </md-content>
+            <md-content layout="row">
+                <a flex>{{ad.description.name}}</a>
+                <span flex="10"></span>
+                <a flex="20">{{ad.description.price}}</a>
+            </md-content>
+        </md-whiteframe>
     </md-content>
 </div>
 <div ng-if="home.ads.length==0" class="box no-data">

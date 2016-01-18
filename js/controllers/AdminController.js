@@ -17,9 +17,9 @@ function AdminController($http, baseUrl, headers,
     admin.device = {
         direction: $mdMedia('min-width: 12cm') ? 'row' : 'column',
         size: $mdMedia('max-width: 27cm')
-    }
+    };
     $(window).on("resize.doResize", _.debounce(function (){
-        console.log('window width changed ' + JSON.stringify(admin.$mdMedia('width')));
+        //console.log('window width changed ' + JSON.stringify(admin.$mdMedia('width')));
         admin.device = {
             direction: $mdMedia('min-width: 12cm') ? 'row' : 'column',
             size: $mdMedia('max-width: 27cm')
